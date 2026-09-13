@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, PowerTransformer
 from sklearn.linear_model import LinearRegression
@@ -141,12 +141,34 @@ y_test_dollars = y_test.values
 # Model evaluation
 mae_dollars = mean_absolute_error(y_test_dollars, prediction_dollars)
 rmse_dollars = np.sqrt(mean_squared_error(y_test_dollars, prediction_dollars))
-r2 = r2_score(y_test, prediction_dollars)
+r2 = r2_score(y_test_dollars, prediction_dollars)
 
+baseline_prediction = np.full_like(y_test_dollars, fill_value=y_train.mean())
+baseline_mae = mean_absolute_error(y_test_dollars, baseline_prediction)
+baseline_rmse = np.sqrt(mean_squared_error(y_test_dollars, baseline_prediction))
+baseline_r2 = r2_score(y_test_dollars, baseline_prediction)
+
+improvement = 1 - (r2/baseline_r2)
+mae_improvement_percent = (1 - (mae_dollars / baseline_mae)) * 100
+rmse_improvement_percent = (1 - (rmse_dollars / baseline_rmse)) * 100
+
+mae_diff = baseline_mae - mae_dollars
+rmse_diff = baseline_rmse - rmse_dollars
+# Results
 print("Model performance (Real Units):")
 print(f"MAE:  ${mae_dollars:,.2f}")
 print(f"RMSE: ${rmse_dollars:,.2f}")
 print(f"R²:    {r2:.4f}")
+
+print("Baseline performance (Real Units):")
+print(f"MAE:  ${baseline_mae:,.2f}")
+print(f"RMSE: ${baseline_rmse:,.2f}")
+print(f"R²:    {baseline_r2:.4f}")
+
+print("Results:")
+print(f"MAE Improvement:  ${mae_diff:,.2f} ({mae_improvement_percent:.1f}% less error)")
+print(f"RMSE Improvement: ${rmse_diff:,.2f} ({rmse_improvement_percent:.1f}% less error)")
+print(f"Variance Added (R²): from {baseline_r2:.4f} -> {r2:.4f}")
 
 # Export model and target transformer
 joblib.dump(pipeline, "models/pipeline.pkl")
