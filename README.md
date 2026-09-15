@@ -50,7 +50,7 @@ jupyter lab src/data_analysis.ipynb
 
 To clean the data, run:
 ```bash
-jupyter lab src/cleaner.py
+python src/cleaner.py
 ```
 
 To train and evaluate the model, run:

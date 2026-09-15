@@ -1,6 +1,6 @@
 import pandas as pd
 
-raw_data = pd.read_csv("data/raw/housing.csv")
+raw_data = pd.read_csv("../data/raw/housing.csv")
 
 # removes rows where missing values are above 50% threshold
 clean_data = raw_data[raw_data.isna().mean(axis=1) <= 0.50]
@@ -38,4 +38,4 @@ clean_data["ocean_proximity"] = clean_data["ocean_proximity"].str.strip()
 
 #saving data
 clean_data = clean_data.reset_index(drop=True)
-clean_data.to_csv("data/processed/clean_data.csv", index=False)
+clean_data.to_csv("../data/processed/clean_data.csv", index=False)

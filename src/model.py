@@ -116,7 +116,7 @@ pipeline = Pipeline([
 ])
 
 # import initially cleaned data
-data = pd.read_csv("data/processed/clean_data.csv")
+data = pd.read_csv("../data/processed/clean_data.csv")
 
 # Split raw target and features
 X = data.drop(columns=["median_house_value"])
@@ -171,5 +171,5 @@ print(f"RMSE Improvement: ${rmse_diff:,.2f} ({rmse_improvement_percent:.1f}% les
 print(f"Variance Added (R²): from {baseline_r2:.4f} -> {r2:.4f}")
 
 # Export model and target transformer
-joblib.dump(pipeline, "models/pipeline.pkl")
-joblib.dump(target_transformer, "models/target_transformer.pkl")
+joblib.dump(pipeline, "../models/pipeline.pkl")
+joblib.dump(target_transformer, "../models/target_transformer.pkl")
