@@ -13,7 +13,6 @@ HousingPredictionML/
 ├── data/
 │   ├── raw/                  # original dataset
 │   └── processed/            # initially cleaned data from cleaner.py
-├
 │   
 ├── src/
 |   ├── data_Analysis.ipynb   # EDA, distributions, and correlation analysis
