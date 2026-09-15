@@ -26,7 +26,7 @@ HousingPredictionML/
 
 ### Clone the Repository
 ```
-git clone [https://github.com/Nezzusa/HousingPredictionML.git](https://github.com/Nezzusa/HousingPredictionML.git)
+git clone https://github.com/Nezzusa/HousingPredictionML.git
 cd HousingPredictionML
 ```
 ### Set up Virtual Environment
