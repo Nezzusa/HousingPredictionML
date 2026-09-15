@@ -13,11 +13,13 @@ HousingPredictionML/
 ├── data/
 │   ├── raw/                  # original dataset
 │   └── processed/            # initially cleaned data from cleaner.py
-│   
+|
+├── models/                   # Exported model pipeline 
+|
 ├── src/
 |   ├── data_Analysis.ipynb   # EDA, distributions, and correlation analysis
 │   ├── cleaner.py            # Initial data processing script
-│   └── train.py              # Model training and evaluation script
+│   └── model.py              # Model training and evaluation script
 ├── requirements.txt          # Project dependencies
 └── README.md
 ```
@@ -45,7 +47,7 @@ pip install -r requirements.txt
 
 To see data analysis and conclusions, run:
 ```bash 
-jupyter lab src/data_analysis.ipynb
+jupyter lab src/data_Analysis.ipynb
 ```
 
 To clean the data, run:
@@ -55,6 +57,6 @@ python src/cleaner.py
 
 To train and evaluate the model, run:
 ```bash
-python src/train.py
+python src/model.py
 ```
 
